@@ -1,10 +1,10 @@
 {
-    "descripition":"Alton River Gauge LD26",
-    "uuid":"99d150d1-4826-43cd-b4e0-e04ec79d64dc",
-    "dBusName":"com.AltonRiverGauge",
-    "calibrationTable": [[0,0],[12,15],[22,216],[32,416],[39,554],[40,578],[45,597],[50,614]],
-    "dataSiteCode":"05587498",
+    "descripition":"Hardin River Gauge",
+    "uuid":"039c8d3f-c614-41d0-9f9a-3784e6a1ef12",
+    "dBusName":"com.HardinRiverGauge",
+    "calibrationTable": [[0,0],[14,15],[24,216],[34,416],[44,614]],
+    "dataSiteCode":"05587060",
     "dataParCode":"00065",
     "dataLoc":"instant",
-    "gaugeIrAddress":"7"
+    "gaugeIrAddress":"3"
 }
