@@ -1,0 +1,10 @@
+{
+    "descripition":"Alton River Gauge LD26",
+    "uuid":"99d150d1-4826-43cd-b4e0-e04ec79d64dc",
+    "dBusName":"com.AltonRiverGauge",
+    "calibrationTable": [[0,0],[12,15],[22,216],[32,416],[39,554],[40,578],[45,597],[50,614]],
+    "dataSiteCode":"05587498",
+    "dataParCode":"00065",
+    "dataLoc":"instant",
+    "gaugeIrAddress":"7"
+}
