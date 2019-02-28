@@ -6,10 +6,10 @@ echo "Set irdclient as defalut group for HardinRiverGauge -> sudo chown :irdclie
 sudo chown :irdclient ../HardinRiverGauge
 echo "Give default group write access to the HardinRiverGauge directory -> sudo chmod g+w ../HardinRiverGauge"
 sudo chmod g+w ../HardinRiverGauge
-echo "Install D-Bus config file for this service -> sudo cp ./postInstall/HardinRiverGauge.conf /etc/dbus-1/system.d"
-sudo cp ./postInstall/HardinRiverGauge.conf /etc/dbus-1/system.d
-echo "Install systemd service file -> cp -n ./postInstall/HardinRiverGauge.service /etc/systemd/system"
-sudo cp -n ./postInstall/HardinRiverGauge.service /etc/systemd/system
+echo "Install D-Bus config file for this service -> sudo cp ./postInstall/dbus.conf /etc/dbus-1/system.d/HardinRiverGauge.conf"
+sudo cp ./postInstall/dbus.conf /etc/dbus-1/system.d/HardinRiverGauge.conf
+echo "Install systemd service file -> sudo cp -n ./postInstall/server.service /etc/systemd/system/HardinRiverGauge.service"
+sudo cp -n ./postInstall/server.service /etc/systemd/system/HardinRiverGauge.service
 echo "Enable the servers to start on reboot -> systemctl enable HardinRiverGauge.service"
 sudo systemctl enable HardinRiverGauge.service
 #echo "Start the service now -> systemctl start HardinRiverGauge.service"
