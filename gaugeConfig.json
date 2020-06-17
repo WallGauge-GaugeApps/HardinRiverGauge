@@ -7,7 +7,7 @@
     "dataParCode":"00065",
     "dataLoc":"instant",
     "gaugeIrAddress":"3",
-    "battLifeInDays":"365",
+    "battLifeInDays":"620",
     "battLastReplaced":"",
     "gaugeURL":"https://water.weather.gov/ahps2/hydrograph.php?wfo=lsx&gage=hari2"
 }
