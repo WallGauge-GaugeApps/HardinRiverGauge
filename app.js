@@ -1,10 +1,11 @@
-const RvrDta = require('./riverData.js');
+const RData = require('river-data-getter');
 const AppMan = require('app-manager');
 
 overrideConsole();
 
 const myAppMan = new AppMan(__dirname + '/gaugeConfig.json', __dirname + '/modifiedConfig.json');
-const gDta = new RvrDta();
+const rData = new RData();
+
 /*
     There are two timmers, one to fetch data from the internet and the other to send it to a gauge. 
     If you would like to send data to the gauge as soon as you receive it, then only one timer is required.
@@ -26,7 +27,15 @@ console.log('________________________________________________________');
 function getRvrData() {
     console.log('Updating data via Internet for dataSiteCode = ' + myAppMan.config.dataSiteCode + ', dataParCode = ' + myAppMan.config.dataParCode);
     validData = false;
-    gDta.getInstantValues(myAppMan.config.dataSiteCode, myAppMan.config.dataParCode, setNewValue);
+    rData.getCurrentData([myAppMan.config.dataSiteCode])
+    .then(() => {
+        console.log('Gauge value for ' + myAppMan.config.dataSiteCode + ' = ' + rData.dataObj.current[myAppMan.config.dataSiteCode]['00065'].value)
+        setNewValue(0, '', rData.dataObj.current[myAppMan.config.dataSiteCode]['00065'].value);
+    })
+    .catch((err) => {
+        console.error('Error calling rData.getCurrentData ', err)
+        setNewValue(1, 'Error getting river data');
+    });
 };
 
 function setNewValue(eNum, eTxt, val) {
@@ -51,7 +60,11 @@ function setNewValue(eNum, eTxt, val) {
 
 function sendValueToGauge() {
     if (validData) {
-        if (myAppMan.setGaugeValue(gValue)) {
+        let rslt = myAppMan.setGaugeValue(gValue, "', " +
+            "obs = " + rData.dataObj.current[myAppMan.config.dataSiteCode]['00065'].dateTime
+        );
+
+        if (rslt) {
             myAppMan.setGaugeStatus('Okay, ' + (new Date()).toLocaleTimeString() + ', ' + (new Date()).toLocaleDateString());
             if (inAlert == true) {
                 myAppMan.sendAlert({ [myAppMan.config.descripition]: "0" });
